@@ -48,5 +48,5 @@ function WriteLog
  
    LogMessage -Message $Message -LogFile $LogFile
 }
-
+#這邊日誌的格式，我故意調成json格式，方便日後要餵給Database或其他視覺化軟體時，以減少格式的衝突。
 WriteLog -Message "{檢查時間 : $((Get-Date).ToString()), 檢查結果 : $result, Total_Hashrate : $hashrate}"
