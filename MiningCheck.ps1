@@ -17,7 +17,7 @@ $mail = if ($result -eq "功能不正常") {
     [SecureString]$securepassword = $password | ConvertTo-SecureString -AsPlainText -Force 
     $credential = New-Object System.Management.Automation.PSCredential -ArgumentList $username, $securepassword
     #可以使用兩個不同的信箱寄信，或是使用一個信箱，自己寄給自己也行。
-    Send-MailMessage -SmtpServer smtp.gmail.com -Port 587 -UseSsl -From XXXXXX@gmail.com -To OOOOOO@gapp.nthu.edu.tw -Subject "目前的Hashrate是$hashrate，挖礦出現問題啦" -Body '趕快去看看！' -Credential $credential -Encoding UTF8
+    Send-MailMessage -SmtpServer smtp.gmail.com -Port 587 -UseSsl -From XXXXXX@gmail.com -To OOOOOO@gmail.com -Subject "目前的Hashrate是$hashrate，挖礦出現問題啦" -Body '趕快去看看！' -Credential $credential -Encoding UTF8
     }
 $mail
 
