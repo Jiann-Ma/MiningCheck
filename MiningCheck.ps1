@@ -21,8 +21,8 @@ $mail = if ($result -eq "功能不正常") {
     }
 $mail
 
-#撰寫檢查日誌
-$LogFile = "C:\Users\$env:UserName\Desktop\miningCheck\MiningCheckLog.txt"
+#撰寫檢查日誌，這邊預設路徑是放在桌面，如果要放在其他的位置，記得修改路徑。
+$LogFile = "C:\Users\$env:UserName\Desktop\MiningCheckLog.txt"
 function LogMessage
 {
     param([string]$Message, [string]$LogFile)
