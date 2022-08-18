@@ -1,12 +1,16 @@
+#2022/08/18更新: 新增自動抓取IP語法。
+$myIP = (Get-NetIPAddress -AddressFamily IPv4 -InterfaceIndex 5).IPAddress
+$api = "http://$myIP`:8888/api/v1/status"
+
 #請將IP位置換成自己的NBminer的LAN網站IP位置
-$webResponse = Invoke-WebRequest http://{IP位置}/api/v1/status
+$webResponse = Invoke-WebRequest $api
 
 #利用正規表示式規則比對，如果礦機呈現的數值不對，則會有下一步通知。
 $totalHashRate = $webResponse.RawContent -match "`"total_hashrate`":`"{正規表示式規則}`""
 $result = if ($totalHashRate -eq $true) {write-output "功能正常"} else {write-output "功能不正常"}
 
 #這邊的用意是提取hashrate，讓Gmail在通知時能一併附上當前的hashrate。
-$hashrate = Invoke-RestMethod 'http://{IP位置}/api/v1/status'
+$hashrate = Invoke-RestMethod $api
 $hashrate = $hashrate.miner.total_hashrate -replace ' M', ''
 
 #寄送mail的部分
